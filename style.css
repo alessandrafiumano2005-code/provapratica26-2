@@ -62,6 +62,10 @@
     --color-surface-muted: #f2f2f2; 
     --icon-size: 1em;
     --icon-color: currentColor;
+        /* Token Assets */
+    --heading-5-font-size: 28px;       
+    --heading-5-line-height: 1.3;      
+    --color-surface-dark: #262626;     
 }
 
 /* Tema chiaro: ridefinisce solo i token che cambiano con il tema */
@@ -150,6 +154,17 @@ img {
     font-weight: var(--heading-4-font-weight);
     line-height: var(--heading-4-line-height);
     text-wrap: balance;
+}
+.heading-size-5 {
+    font-size: var(--heading-5-font-size);
+    font-weight: var(--heading-4-font-weight);
+    line-height: var(--heading-5-line-height);
+}
+
+/* Tema scuro: i token scuri sono già in :root, qui serve solo lo sfondo */
+.theme-dark {
+    color: var(--color-white);
+    background: var(--color-black);
 }
 
 .color-muted {
@@ -613,10 +628,7 @@ img {
 @media (max-width:520px){
   .scheda .colonna{ grid-template-columns:1fr; }
 }
-/* fascia a tutta larghezza con la linea sotto */
-.concept{
-  border-bottom:1px solid var(--color-border-muted);
-}
+
 
 /* colonna centrale con le due linee verticali */
 .concept-colonna{
@@ -799,4 +811,57 @@ img {
     .case-study-intro { padding: var(--spacing-64) var(--spacing-24); }
     .sitemap-text { padding: var(--spacing-40) var(--spacing-24); }
     .sitemap-visual { padding: var(--spacing-24); }
+}
+/* ---------- ASSETS ---------- */
+
+/* Mobile: una colonna */
+.assets-feature {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.assets-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em; 
+    padding: var(--spacing-40) var(--spacing-24);
+}
+
+/* Riquadri con l'immagine centrata */
+.assets-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-40);
+}
+
+.assets-visual img {
+    display: block;
+    height: auto;
+}
+
+.assets-visual-dark {
+    background: var(--color-surface-dark);
+}
+
+.assets-visual-light {
+    background: var(--color-surface-muted);
+}
+
+/* Desktop: due colonne uguali, ogni testo accanto alla sua immagine */
+@media (min-width: 1000px) {
+    .assets-feature {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .assets-text {
+        align-self: center;
+        padding: var(--spacing-64) var(--spacing-64) var(--spacing-64) var(--spacing-128);
+    }
+}
+
+/* Schermi stretti: cambio il token, non la regola */
+@media (max-width: 640px) {
+    :root {
+        --heading-5-font-size: 24px;
+    }
 }
