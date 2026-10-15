@@ -71,6 +71,7 @@
     --text-350-line-height: 1.4;
     --quote-font-size: 32px;
     --quote-line-height: 1.5;
+    --color-footer-bg: #121714;
         
 }
 
@@ -992,4 +993,222 @@ img {
         padding-block: var(--spacing-40);
         gap: var(--spacing-40);
     }
+}
+
+/* ---------- SCHEDE (breakdownTabs) ---------- */
+
+/* Contenitore: immagine sopra, voci sotto */
+.breakdownTabs {
+    display: grid;
+    gap: var(--spacing-40);
+    padding: var(--spacing-40) var(--spacing-24);
+}
+
+/* Riquadro grigio, con margine intorno al segnaposto */
+.breakdownTabs-visuals {
+    padding: var(--spacing-24);
+    background: var(--color-surface-muted);
+    border-radius: var(--radius-control);
+}
+
+/* Segnaposto: nascosto, con bordo tratteggiato e testo centrato */
+.breakdownTabs-visual {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    min-height: 200px;
+    aspect-ratio: 16 / 9;
+    border: 1px dashed var(--color-border-muted);
+    text-align: center;
+    color: var(--color-muted);
+}
+.breakdownTabs-visual-label {
+    font-size: var(--text-100-font-size);
+    text-transform: uppercase;
+}
+.breakdownTabs-visual-title {
+    font-size: var(--heading-4-font-size);
+    line-height: var(--heading-4-line-height);
+    font-weight: 700;
+}
+
+
+/* Si vede solo quello della voce con is-selected */
+.breakdownTabs:has(#tab-1.is-selected) .breakdownTabs-visual-1,
+.breakdownTabs:has(#tab-2.is-selected) .breakdownTabs-visual-2,
+.breakdownTabs:has(#tab-3.is-selected) .breakdownTabs-visual-3 {
+    display: flex;
+}
+
+/* Voci: la linea sopra è verde se selezionata */
+.breakdownTabs-list {
+    list-style: none;
+    display: grid;
+}
+.breakdownTabs-item {
+    position: relative; /* serve per rendere cliccabile tutta la voce */
+    display: grid;
+    gap: 1em;
+    padding: var(--spacing-24) 0;
+    border-top: 2px solid var(--color-border-muted);
+}
+.breakdownTabs-item.is-selected {
+    border-top-color: var(--color-cursor);
+}
+
+/* Bottone: icona + titolo + triangolo (il triangolo c'è solo su mobile) */
+.breakdownTabs-button {
+    --icon-color: var(--color-cursor);
+    display: flex;
+    align-items: center;
+    gap: 0.75em;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+.breakdownTabs-title {
+    font-size: 1.25em;
+}
+
+.breakdownTabs-item:not(.is-selected) .breakdownTabs-title {
+    color: var(--color-muted); /* le voci non scelte sono grigie */
+}
+.breakdownTabs-button::before { /* triangolo */
+    content: "";
+    order: 3;
+    margin-left: auto;
+    border: 0.3em solid transparent;
+    border-top-color: currentColor;
+}
+.breakdownTabs-item.is-selected .breakdownTabs-button::before {
+    transform: rotate(180deg);
+}
+.breakdownTabs-button::after { /* area cliccabile = tutta la voce */
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+
+/* Focus da tastiera: contorno sull'intera voce */
+.breakdownTabs-button:focus-visible {
+    outline: none;
+}
+.breakdownTabs-item:has(.breakdownTabs-button:focus-visible) {
+    outline: var(--focus-outline-width) solid var(--color-focus);
+    outline-offset: var(--focus-outline-offset);
+}
+
+/* Testo e link */
+.breakdownTabs-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1em;
+}
+.breakdownTabs-link {
+    position: relative; /* sta sopra l'area cliccabile, così il link funziona */
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    color: var(--color-link);
+    text-decoration: none;
+}
+
+/* MOBILE: se il JS è partito, si vede solo il testo della voce scelta */
+.breakdownTabs-ready .breakdownTabs-item:not(.is-selected) .breakdownTabs-body {
+    display: none;
+}
+
+/* DESKTOP: tre colonne, tutti i testi visibili, niente triangolo */
+@media (min-width: 1000px) {
+    .breakdownTabs {
+        padding: var(--spacing-64);
+    }
+    .breakdownTabs-list {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: var(--spacing-40);
+    }
+    .breakdownTabs-button {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .breakdownTabs-button::before {
+        display: none;
+    }
+    .breakdownTabs-ready .breakdownTabs-item:not(.is-selected) .breakdownTabs-body {
+        display: flex;
+    }
+}
+/* ---------- FOOTER ---------- */
+.footer {
+    background: var(--color-footer-bg);
+    color: var(--color-white);
+    border-top: var(--border-width) solid var(--color-cursor);
+}
+.footer-inner {
+    padding-inline: var(--spacing-24);
+}
+.footer-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--spacing-24);
+    padding-block: var(--spacing-24);
+}
+.footer-list li {
+    display: flex;
+    align-items: center;
+}
+.footer-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75em;
+    color: var(--color-muted);
+    font-family: var(--font-mono);
+    font-size: var(--text-100-font-size);
+    text-decoration: none;
+}
+.footer-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75em;
+    color: var(--color-white);
+    font-size: var(--text-100-font-size);
+    text-decoration: none;
+}
+.footer-top-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: var(--border-width) solid var(--color-button-secondary-bg);
+    border-radius: var(--radius-control);
+}
+.footer a:focus-visible {
+    outline: var(--focus-outline-width) solid var(--color-focus);
+    outline-offset: var(--focus-outline-offset);
+}
+@media (hover: hover) and (pointer: fine) {
+    .footer-link:hover {
+        color: var(--color-white);
+    }
+}
+.footer-bottom {
+    border-top: var(--border-width) solid var(--color-border-muted);
+}
+.footer-note {
+    padding-block: var(--spacing-40);
+    color: var(--color-muted);
+    font-family: var(--font-mono);
+    font-size: var(--text-100-font-size);
 }

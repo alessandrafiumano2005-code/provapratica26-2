@@ -58,3 +58,26 @@ desktopMedia.addEventListener('change', function () {
   else if (desktopMedia.matches && focusOnButton) navigationPanel.querySelector('a').focus();
   else if (!desktopMedia.matches && focusInNavigation) navigationButton.focus();
 });
+
+// ---------- SCHEDE (breakdownTabs) ----------
+
+// 1. Cerco il contenitore e le tre voci
+const tabs = document.querySelector('.breakdownTabs');
+const items = tabs.querySelectorAll('.breakdownTabs-item');
+
+// 2. Dico al CSS che il JavaScript è partito
+tabs.classList.add('breakdownTabs-ready');
+
+// 3. Funzione: seleziona la voce con quel numero e deseleziona le altre
+function selectItem(index) {
+  items.forEach(function (item, i) {
+    item.classList.toggle('is-selected', i === index);
+  });
+}
+
+// 4. Ogni bottone, al clic, seleziona la sua voce
+items.forEach(function (item, i) {
+  item.querySelector('.breakdownTabs-button').addEventListener('click', function () {
+    selectItem(i);
+  });
+});
