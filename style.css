@@ -798,6 +798,7 @@ img {
     height: auto;
 }
 
+
 /* Desktop: stessa soglia del menu */
 @media (min-width: 1000px) {
     .sitemap-feature {
