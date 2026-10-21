@@ -81,3 +81,28 @@ items.forEach(function (item, i) {
     selectItem(i);
   });
 });
+
+// ---------- DOMANDE (faq) ----------
+
+// 1. Cerco la lista e le due domande
+const faq = document.querySelector('.faq');
+const faqItems = faq.querySelectorAll('.faq-item');
+
+// 2. Dico al CSS che il JavaScript è partito
+faq.classList.add('faq-ready');
+
+// 3. Ogni domanda, al clic, si apre (e chiude le altre); se era già aperta, si chiude
+faqItems.forEach(function (item) {
+  const button = item.querySelector('.faq-question');
+  button.addEventListener('click', function () {
+    const eraAperta = item.classList.contains('is-selected');
+    faqItems.forEach(function (altra) {
+      altra.classList.remove('is-selected');
+      altra.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+    });
+    if (!eraAperta) {
+      item.classList.add('is-selected');
+      button.setAttribute('aria-expanded', 'true');
+    }
+  });
+});

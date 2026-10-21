@@ -911,7 +911,20 @@ img {
     align-items: center;
     justify-content: space-between;
     gap: 1em;
+    width: 100%;
     padding-block: 1.2em;
+    padding-inline: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.faq-question:focus-visible {
+    outline: var(--focus-outline-width) solid var(--color-focus);
+    outline-offset: var(--focus-outline-offset);
 }
 
 /* Il triangolo è un'icona: cambio solo i suoi token */
@@ -926,6 +939,10 @@ img {
 
 .faq-answer {
     padding-bottom: 0.75em;
+}
+/* Se il JS è partito, si vede solo la risposta della voce aperta */
+.faq-ready .faq-item:not(.is-selected) .faq-answer {
+    display: none;
 }
 
 /* Citazione */
@@ -1211,4 +1228,43 @@ img {
     color: var(--color-muted);
     font-family: var(--font-mono);
     font-size: var(--text-100-font-size);
+}
+
+/* ---------- IMMAGINI DESKTOP / MOBILE ---------- */
+
+/* Di base si vede solo quella desktop */
+img.img-mobile {
+    display: none;
+}
+
+/* Sotto i 1000px (stessa soglia del resto del sito) si scambiano */
+@media (max-width: 999px) {
+    img.img-desktop {
+        display: none;
+    }
+    img.img-mobile {
+        display: block;
+    }
+}
+
+/* Mobile (sotto i 1000px): l'immagine occupa tutta la larghezza del riquadro, senza cornice */
+@media (max-width: 999px) {
+    .assets-visual {
+        padding: 0;
+    }
+    .assets-visual img {
+        width: 100%;
+    }
+}
+
+/* Mobile (sotto i 1000px): hero come nel frame di Figma */
+@media (max-width: 999px) {
+    .hero-content {
+        padding-inline: var(--spacing-24);  /* lati: 24px invece di 64px */
+        padding-bottom: var(--spacing-24);  /* sotto la foto: 24px invece di 64px */
+    }
+    .hero-image {
+        width: 100%;                                   /* la foto riempie la larghezza */
+        margin-top: calc(32px - var(--hero-content-gap)); /* sopra la foto: 32px */
+    }
 }
