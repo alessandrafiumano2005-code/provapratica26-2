@@ -393,7 +393,6 @@ img {
     color: var(--color-white);
 }
 
-/* Il layout "compatto" dipende se l'attributo popover è presente (su desktop viene rimosso via JS) */
 .navigation:has(.navigation-panel[popover]) {
     height: var(--navigation-height);
 }
@@ -489,7 +488,6 @@ img {
     }
 }
 
-/* Su tablet cambia il layout, ma il popover resta attivo */
 @media (min-width: 48rem) {
     .navigation {
         --navigation-height: 4em;
@@ -543,7 +541,6 @@ img {
     }
 }
 
-/* Su desktop JS rimuove popover e gli elementi si dispongono in linea */
 @media (min-width: 1000px) {
     .navigation {
         --navigation-inline-list-padding: 0 0 0 1em;
@@ -635,7 +632,6 @@ img {
 @media (max-width:520px){
   .scheda .colonna{ grid-template-columns:1fr; }
 }
-
 
 /* colonna centrale con le due linee verticali */
 .concept-colonna{
@@ -799,7 +795,6 @@ img {
     height: auto;
 }
 
-
 /* Desktop: stessa soglia del menu */
 @media (min-width: 1000px) {
     .sitemap-feature {
@@ -814,7 +809,7 @@ img {
 /* Schermi stretti: cambio i token, non le regole */
 @media (max-width: 640px) {
     :root {
-        --heading-4-font-size: 28px; /* FIGMA */
+        --heading-4-font-size: 28px; 
     }
     .case-study-intro { padding: var(--spacing-64) var(--spacing-24); }
     .sitemap-text { padding: var(--spacing-40) var(--spacing-24); }
@@ -856,7 +851,7 @@ img {
     background: var(--color-surface-muted);
 }
 
-/* Desktop: due colonne uguali, ogni testo accanto alla sua immagine */
+/* Desktop: due colonne uguali */
 @media (min-width: 1000px) {
     .assets-feature {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -893,7 +888,7 @@ img {
     max-width: 8em;
 }
 
-/* Elenco statico: la voce con is-selected è quella "aperta" nel design */
+/* Elenco statico */
 .faq {
     list-style: none;
 }
@@ -927,7 +922,6 @@ img {
     outline-offset: var(--focus-outline-offset);
 }
 
-/* Il triangolo è un'icona: cambio solo i suoi token */
 .faq-toggle {
     --icon-size: 0.6em;
     --icon-color: var(--color-cursor);
@@ -980,7 +974,7 @@ img {
     color: var(--color-black);
 }
 
-/* Desktop: stessa soglia del menu */
+/* Desktop */
 @media (min-width: 1000px) {
     .highlights-content {
         grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
@@ -1000,7 +994,6 @@ img {
     }
 }
 
-/* Schermi stretti: cambio i token, non le regole */
 @media (max-width: 640px) {
     :root {
         --quote-font-size: 22px;
@@ -1059,7 +1052,6 @@ img {
     display: flex;
 }
 
-/* Voci: la linea sopra è verde se selezionata */
 .breakdownTabs-list {
     list-style: none;
     display: grid;
@@ -1075,7 +1067,6 @@ img {
     border-top-color: var(--color-cursor);
 }
 
-/* Bottone: icona + titolo + triangolo (il triangolo c'è solo su mobile) */
 .breakdownTabs-button {
     --icon-color: var(--color-cursor);
     display: flex;
@@ -1095,9 +1086,9 @@ img {
 }
 
 .breakdownTabs-item:not(.is-selected) .breakdownTabs-title {
-    color: var(--color-muted); /* le voci non scelte sono grigie */
+    color: var(--color-muted); 
 }
-.breakdownTabs-button::before { /* triangolo */
+.breakdownTabs-button::before { 
     content: "";
     order: 3;
     margin-left: auto;
@@ -1107,13 +1098,12 @@ img {
 .breakdownTabs-item.is-selected .breakdownTabs-button::before {
     transform: rotate(180deg);
 }
-.breakdownTabs-button::after { /* area cliccabile = tutta la voce */
+.breakdownTabs-button::after { 
     content: "";
     position: absolute;
     inset: 0;
 }
 
-/* Focus da tastiera: contorno sull'intera voce */
 .breakdownTabs-button:focus-visible {
     outline: none;
 }
@@ -1130,7 +1120,7 @@ img {
     gap: 1em;
 }
 .breakdownTabs-link {
-    position: relative; /* sta sopra l'area cliccabile, così il link funziona */
+    position: relative; 
     z-index: 1;
     display: inline-flex;
     align-items: center;
@@ -1139,12 +1129,12 @@ img {
     text-decoration: none;
 }
 
-/* MOBILE: se il JS è partito, si vede solo il testo della voce scelta */
+/* MOBILE */
 .breakdownTabs-ready .breakdownTabs-item:not(.is-selected) .breakdownTabs-body {
     display: none;
 }
 
-/* DESKTOP: tre colonne, tutti i testi visibili, niente triangolo */
+/* DESKTOP */
 @media (min-width: 1000px) {
     .breakdownTabs {
         padding: var(--spacing-64);
@@ -1260,11 +1250,11 @@ img.img-mobile {
 /* Mobile (sotto i 1000px): hero come nel frame di Figma */
 @media (max-width: 999px) {
     .hero-content {
-        padding-inline: var(--spacing-24);  /* lati: 24px invece di 64px */
-        padding-bottom: var(--spacing-24);  /* sotto la foto: 24px invece di 64px */
+        padding-inline: var(--spacing-24); 
+        padding-bottom: var(--spacing-24); 
     }
     .hero-image {
-        width: 100%;                                   /* la foto riempie la larghezza */
-        margin-top: calc(32px - var(--hero-content-gap)); /* sopra la foto: 32px */
+        width: 100%;                                  
+        margin-top: calc(32px - var(--hero-content-gap)); 
     }
 }
